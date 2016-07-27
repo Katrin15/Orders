@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="orders">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+
+	<div class="container">
+
+	<form class="form-horizontal">
+		<div class="form-group">
+		    <label for="theme" class="col-sm-2 control-label">Тема заявки</label>
+		    <div class="col-sm-10">
+		      <input type="email" class="form-control" id="theme" placeholder="тема заявки">
+		    </div>
+		</div>
+		
+		<div class="form-group">
+		    <label for="theme_text" class="col-sm-2 control-label">Текст заявки</label>
+		    <div class="col-sm-10">
+				<textarea class="form-control" id="theme_text" placeholder="текст заявки" rows="3"></textarea>
+			</div>
+		</div>
+
+
+		<div class="form-group urgency">
+			<div class="col-sm-2">
+				<span>Укажите срочность проекта</span>
+			</div>
+			
+			<div class="col-sm-10">
+				<label class="radio-inline">
+				  	<input type="radio" name="projectUrgency" id="inlineRadio1" value="low"> низкая
+				</label>
+				<label class="radio-inline">
+				  	<input type="radio" name="projectUrgency" id="inlineRadio2" value="middle"> средняя
+				</label>
+				<label class="radio-inline">
+				  	<input type="radio" name="projectUrgency" id="inlineRadio3" value="urgent"> срочная
+				</label>
+			</div>
+
+		</div>
+		
+		<div class="form-group">
+			<label for="select_project" class="col-sm-2 control-label">Выберите проект для участия</label>
+			<div class="col-sm-10">
+				<select class="form-control" id="select_project">
+					<option>Арктические медведи</option>
+					<option>Сервиз "Мадонна"</option>
+					<option>Фестиваль "Московское Варенье"</option>
+					<option>Выборы Президента РФ</option>
+					<option>Колонизация Марса 2030</option>
+				</select>
+			</div>
+		</div>
+
+
+		<div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-default">Отправить</button>
+		    </div>
+		</div>
+	</form>
+
+	</div> <!-- container -->
+	
+</body>	
+</html>
