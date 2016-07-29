@@ -5,26 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 
-	<div class="container">
+	<div class="container" >
 
-	<form class="form-horizontal">
+	<form class="form-horizontal" ng-controller="SendOrderController as SendCtrl">
 		<div class="form-group">
 		    <label for="theme" class="col-sm-2 control-label">Тема заявки</label>
 		    <div class="col-sm-10">
-		      <input type="email" class="form-control" id="theme" placeholder="тема заявки">
+		      <input type="text" class="form-control" id="theme" placeholder="тема заявки" ng-model="SendCtrl.order.theme" />
 		    </div>
 		</div>
 		
 		<div class="form-group">
 		    <label for="theme_text" class="col-sm-2 control-label">Текст заявки</label>
 		    <div class="col-sm-10">
-				<textarea class="form-control" id="theme_text" placeholder="текст заявки" rows="3"></textarea>
+				<textarea class="form-control" id="theme_text" placeholder="текст заявки" rows="3" ng-model="SendCtrl.order.themeText"></textarea>
 			</div>
 		</div>
 
@@ -36,13 +37,13 @@
 			
 			<div class="col-sm-10">
 				<label class="radio-inline">
-				  	<input type="radio" name="projectUrgency" id="inlineRadio1" value="low"> низкая
+				  	<input type="radio" name="projectUrgency" id="inlineRadio1" value="low" ng-model="SendCtrl.order.projectUrgency"> низкая
 				</label>
 				<label class="radio-inline">
-				  	<input type="radio" name="projectUrgency" id="inlineRadio2" value="middle"> средняя
+				  	<input type="radio" name="projectUrgency" id="inlineRadio2" value="middle" ng-model="SendCtrl.order.projectUrgency"> средняя
 				</label>
 				<label class="radio-inline">
-				  	<input type="radio" name="projectUrgency" id="inlineRadio3" value="urgent"> срочная
+				  	<input type="radio" name="projectUrgency" id="inlineRadio3" value="urgent" ng-model="SendCtrl.order.projectUrgency"> срочная
 				</label>
 			</div>
 
@@ -51,12 +52,13 @@
 		<div class="form-group">
 			<label for="select_project" class="col-sm-2 control-label">Выберите проект для участия</label>
 			<div class="col-sm-10">
-				<select class="form-control" id="select_project">
+				<select class="form-control" id="select_project" ng-model="SendCtrl.order.projectName">
 					<option>Арктические медведи</option>
 					<option>Сервиз "Мадонна"</option>
 					<option>Фестиваль "Московское Варенье"</option>
 					<option>Выборы Президента РФ</option>
 					<option>Колонизация Марса 2030</option>
+					<option>Дом 2</option>
 				</select>
 			</div>
 		</div>
@@ -69,7 +71,67 @@
 		</div>
 	</form>
 
+	<!-- проверка  сейчас не работает тк SendOrderController прицепленн к форме, а этот div уже вне формы-->
+	<div class="angularOutput">
+
+		<div>{{order.theme}}</div>
+		<div>{{order.themeText}}</div>	
+		<div>{{order.projectUrgency}}</div>
+		<div>{{order.projectName}}</div>
+		<!--  <div>{{SendCtrl.order.theme}}</div>
+		<div>{{SendCtrl.order.themeText}}</div>	
+		<div>{{SendCtrl.order.projectUrgency}}</div>
+		<div>{{SendCtrl.order.projectName}}</div> -->
+	</div>
+
+	<!-- 
+	<div ng-controller="TableDataController as TableDataCtrl">
+		tableDataController - просто проверка получения данных из json
+	</div>
+	 -->
+
+	<div class="row">
+		<div class="table-responsive">
+			<table class = "table table-bordered" ng-controller="TableDataController as TableDataCtrl">
+				<thead>
+				     <tr>
+				        <th>Тема заявки</th>
+				        <th>Текст заявки</th>
+				        <th>Срочность проекта</th>
+				        <th>Название проекта</th>
+				    </tr>
+			    </thead>
+
+				<tbody>
+					<tr ng-repeat="order in TableDataCtrl.orders">
+						<td>
+							{{order.theme}}	
+						</td>
+						<td>
+							{{order.themeText}}	
+						</td>
+						<td>
+							{{order.projectUrgency}}	
+						</td>
+						<td>
+							{{order.projectName}}	
+						</td>
+					</tr>
+
+					
+
+					<!-- <tr>
+						<td>{{TableDataCtrl.orders[0].theme}}</td>
+					</tr> -->
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+
 	</div> <!-- container -->
+
+
 	
 </body>	
 </html>
