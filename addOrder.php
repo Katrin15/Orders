@@ -1,12 +1,19 @@
 <?php
-/*
-$data[] = $_POST['data'];
 
-$inp = file_get_contents('results.json');
+$receivedData = array (
+
+	"theme" => htmlspecialchars($_POST['theme']),
+    "themeText" => htmlspecialchars($_POST['themeText']),
+    "projectName" => htmlspecialchars($_POST['projectName']),
+    "orderUrgency" => htmlspecialchars($_POST['orderUrgency'])
+
+);
+
+$inp = file_get_contents('orders.json');
 $tempArray = json_decode($inp);
-array_push($tempArray, $data);
+array_unshift($tempArray, $receivedData);
 $jsonData = json_encode($tempArray);
-file_put_contents('results.json', $jsonData);*/
+file_put_contents('orders.json', $jsonData);
 
 //$orderTheme = "33";
 
