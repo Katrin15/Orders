@@ -12,20 +12,20 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 
-	<div class="container" >
+	<div class="container" ng-controller="SendOrderController as SendCtrl">
 
-	<form class="form-horizontal" ng-controller="SendOrderController as SendCtrl">
+	<form class="form-horizontal" name="sendOrder" ng-submit="SendCtrl.addOrder()" novalidate> <!-- sendOrder.$valid &&  -->
 		<div class="form-group">
 		    <label for="theme" class="col-sm-2 control-label">Тема заявки</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="theme" placeholder="тема заявки" ng-model="SendCtrl.order.theme" />
+		      <input type="text" class="form-control" name="orderTheme" id="theme" placeholder="тема заявки" ng-model="SendCtrl.order.theme" required/>
 		    </div>
 		</div>
 		
 		<div class="form-group">
 		    <label for="theme_text" class="col-sm-2 control-label">Текст заявки</label>
 		    <div class="col-sm-10">
-				<textarea class="form-control" id="theme_text" placeholder="текст заявки" rows="3" ng-model="SendCtrl.order.themeText"></textarea>
+				<textarea class="form-control" name="orderText" id="theme_text" placeholder="текст заявки" rows="3" ng-model="SendCtrl.order.themeText" required></textarea>
 			</div>
 		</div>
 
@@ -37,13 +37,13 @@
 			
 			<div class="col-sm-10">
 				<label class="radio-inline">
-				  	<input type="radio" name="projectUrgency" id="inlineRadio1" value="low" ng-model="SendCtrl.order.projectUrgency"> низкая
+				  	<input type="radio" name="orderUrgency" id="inlineRadio1" value="low" ng-model="SendCtrl.order.orderUrgency"> низкая
 				</label>
 				<label class="radio-inline">
-				  	<input type="radio" name="projectUrgency" id="inlineRadio2" value="middle" ng-model="SendCtrl.order.projectUrgency"> средняя
+				  	<input type="radio" name="orderUrgency" id="inlineRadio2" value="middle" ng-model="SendCtrl.order.orderUrgency"> средняя
 				</label>
 				<label class="radio-inline">
-				  	<input type="radio" name="projectUrgency" id="inlineRadio3" value="urgent" ng-model="SendCtrl.order.projectUrgency"> срочная
+				  	<input type="radio" name="orderUrgency" id="inlineRadio3" value="urgent" ng-model="SendCtrl.order.orderUrgency"> срочная
 				</label>
 			</div>
 
@@ -52,7 +52,7 @@
 		<div class="form-group">
 			<label for="select_project" class="col-sm-2 control-label">Выберите проект для участия</label>
 			<div class="col-sm-10">
-				<select class="form-control" id="select_project" ng-model="SendCtrl.order.projectName">
+				<select class="form-control" name="orderProject" id="select_project" ng-model="SendCtrl.order.projectName" >
 					<option>Арктические медведи</option>
 					<option>Сервиз "Мадонна"</option>
 					<option>Фестиваль "Московское Варенье"</option>
@@ -76,12 +76,12 @@
 
 		<div>{{order.theme}}</div>
 		<div>{{order.themeText}}</div>	
-		<div>{{order.projectUrgency}}</div>
+		<div>{{order.orderUrgency}}</div>
 		<div>{{order.projectName}}</div>
-		<!--  <div>{{SendCtrl.order.theme}}</div>
+		<div>{{SendCtrl.order.theme}}</div>
 		<div>{{SendCtrl.order.themeText}}</div>	
-		<div>{{SendCtrl.order.projectUrgency}}</div>
-		<div>{{SendCtrl.order.projectName}}</div> -->
+		<div>{{SendCtrl.order.orderUrgency}}</div>
+		<div>{{SendCtrl.order.projectName}}</div><!--   -->
 	</div>
 
 	<!-- 
@@ -111,7 +111,7 @@
 							{{order.themeText}}	
 						</td>
 						<td>
-							{{order.projectUrgency}}	
+							{{order.orderUrgency}}	
 						</td>
 						<td>
 							{{order.projectName}}	
@@ -124,6 +124,7 @@
 			</table>
 		</div>
 	</div>
+	
 
 	</div> <!-- container -->
 
