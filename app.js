@@ -78,12 +78,6 @@
 
 
 	    		});
-					//success(function(res) { 
-					// do something here
-					//console.log("ура"); 
-					//console.log(res);
-					//console.log(order2);
-				//});
 		};
 
 	});
@@ -102,12 +96,17 @@
 	    // не нужно this.sortType = "theme"; //вначале сортировка по теме по алфавиту
 	    //this.sortReverse = 1; // ini
 	    this.sortReverseI = [];
+	    this.icon = ["glyphicon glyphicon-sort-by-alphabet", "glyphicon glyphicon-sort-by-alphabet", "glyphicon glyphicon-sort-by-alphabet", "glyphicon glyphicon-sort-by-alphabet"];
+
 
 	    this.sortColumn = function(sortType, i) {
 	    	this.sortType = sortType;
 	    	this.sortReverseI[i] = !this.sortReverseI[i];
 	    	
 	    	this.sortReverse = this.sortReverseI[i];
+
+	    	this.icon[i] != "glyphicon glyphicon-sort-by-alphabet" ? 
+	    	this.icon[i] = "glyphicon glyphicon-sort-by-alphabet" : this.icon[i] = "glyphicon glyphicon-sort-by-alphabet-alt"
 
 	    	//console.log(this.sortReverseI);
 	    	//console.log(this.sortReverse);

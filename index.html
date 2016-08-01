@@ -99,26 +99,21 @@
 				    <tr>
 				        <th ng-click="TableDataCtrl.sortColumn('theme', 0)">
 				        	Тема заявки	
-				        	<span ng-hide="TableDataCtrl.sortReverseI[0]" class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
-				        	<span ng-show="TableDataCtrl.sortReverseI[0]" class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
-				        	
+				           	<span ng-class="TableDataCtrl.icon[0]" aria-hidden="true"></span>
 				        </th>
 
 				        <!--  <th ng-click="sortType = 'theme'; sortReverse = !sortReverse">Тема заявки</th> старый вариант -->
 				        <th ng-click="TableDataCtrl.sortColumn('themeText', 1)">
 				        	Текст заявки
-				        	<span ng-hide="TableDataCtrl.sortReverseI[1]" class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
-				        	<span ng-show="TableDataCtrl.sortReverseI[1]" class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+				        	<span ng-class="TableDataCtrl.icon[1]" aria-hidden="true"></span>
 				        </th>
 				        <th ng-click="TableDataCtrl.sortColumn('orderUrgency', 2)">
 				        	Срочность проекта
-				        	<span ng-hide="TableDataCtrl.sortReverseI[2]" class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
-				        	<span ng-show="TableDataCtrl.sortReverseI[2]" class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+				        	<span ng-class="TableDataCtrl.icon[2]" aria-hidden="true"></span>
 				        </th>
 				        <th ng-click="TableDataCtrl.sortColumn('projectName', 3)">
 				        	Название проекта
-				        	<span ng-hide="TableDataCtrl.sortReverseI[3]" class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
-				        	<span ng-show="TableDataCtrl.sortReverseI[3]" class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+				        	<span ng-class="TableDataCtrl.icon[3]" aria-hidden="true"></span>
 				        </th>						
 
 				    </tr>
