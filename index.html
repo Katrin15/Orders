@@ -14,18 +14,20 @@
 
 	<div class="container" ng-controller="SendOrderController as SendCtrl">
 
-	<form class="form-horizontal" name="sendOrder" ng-submit="SendCtrl.addOrder()" novalidate> <!-- sendOrder.$valid &&  -->
+	<form class="form-horizontal" name="sendOrder" ng-submit="sendOrder.$valid && addOrder()" novalidate> <!-- sendOrder.$valid &&  -->
 		<div class="form-group">
 		    <label for="theme" class="col-sm-2 control-label">Тема заявки</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" name="orderTheme" id="theme" placeholder="тема заявки" ng-model="SendCtrl.order.theme" required/>
+		      <input type="text" class="form-control" name="orderTheme" id="theme" placeholder="тема заявки" ng-model="order.theme" required/>
+		      <span ng-show="sendOrder.orderTheme.$touched && sendOrder.orderTheme.$error.required">Пожалуйста, введите тему заявки</span>
 		    </div>
 		</div>
 		
 		<div class="form-group">
 		    <label for="theme_text" class="col-sm-2 control-label">Текст заявки</label>
 		    <div class="col-sm-10">
-				<textarea class="form-control" name="orderText" id="theme_text" placeholder="текст заявки" rows="3" ng-model="SendCtrl.order.themeText" required></textarea>
+				<textarea class="form-control" name="orderText" id="theme_text" placeholder="текст заявки" rows="3" ng-model="order.themeText" required></textarea>
+				<span ng-show="sendOrder.orderText.$touched && sendOrder.orderText.$error.required">Пожалуйста, кратко опишите заявку</span>
 			</div>
 		</div>
 
@@ -37,13 +39,13 @@
 			
 			<div class="col-sm-10">
 				<label class="radio-inline">
-				  	<input type="radio" name="orderUrgency" id="inlineRadio1" value="low" ng-model="SendCtrl.order.orderUrgency"> низкая
+				  	<input type="radio" name="orderUrgency" id="inlineRadio1" value="низкая" ng-model="order.orderUrgency"> низкая
 				</label>
 				<label class="radio-inline">
-				  	<input type="radio" name="orderUrgency" id="inlineRadio2" value="middle" ng-model="SendCtrl.order.orderUrgency"> средняя
+				  	<input type="radio" name="orderUrgency" id="inlineRadio2" value="средняя" ng-model="order.orderUrgency"> средняя
 				</label>
 				<label class="radio-inline">
-				  	<input type="radio" name="orderUrgency" id="inlineRadio3" value="urgent" ng-model="SendCtrl.order.orderUrgency"> срочная
+				  	<input type="radio" name="orderUrgency" id="inlineRadio3" value="срочная" ng-model="order.orderUrgency"> срочная
 				</label>
 			</div>
 
@@ -52,7 +54,7 @@
 		<div class="form-group">
 			<label for="select_project" class="col-sm-2 control-label">Выберите проект для участия</label>
 			<div class="col-sm-10">
-				<select class="form-control" name="orderProject" id="select_project" ng-model="SendCtrl.order.projectName" >
+				<select class="form-control" name="orderProject" id="select_project" ng-model="order.projectName" >
 					<option>Арктические медведи</option>
 					<option>Сервиз "Мадонна"</option>
 					<option>Фестиваль "Московское Варенье"</option>
@@ -94,16 +96,36 @@
 		<div class="table-responsive">
 			<table class = "table table-bordered" ng-controller="TableDataController as TableDataCtrl">
 				<thead>
-				     <tr>
-				        <th>Тема заявки</th>
-				        <th>Текст заявки</th>
-				        <th>Срочность проекта</th>
-				        <th>Название проекта</th>
+				    <tr>
+				        <th ng-click="TableDataCtrl.sortColumn('theme', 0)">
+				        	Тема заявки	
+				        	<span ng-hide="TableDataCtrl.sortReverseI[0]" class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+				        	<span ng-show="TableDataCtrl.sortReverseI[0]" class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+				        	
+				        </th>
+
+				        <!--  <th ng-click="sortType = 'theme'; sortReverse = !sortReverse">Тема заявки</th> старый вариант -->
+				        <th ng-click="TableDataCtrl.sortColumn('themeText', 1)">
+				        	Текст заявки
+				        	<span ng-hide="TableDataCtrl.sortReverseI[1]" class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+				        	<span ng-show="TableDataCtrl.sortReverseI[1]" class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+				        </th>
+				        <th ng-click="TableDataCtrl.sortColumn('orderUrgency', 2)">
+				        	Срочность проекта
+				        	<span ng-hide="TableDataCtrl.sortReverseI[2]" class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+				        	<span ng-show="TableDataCtrl.sortReverseI[2]" class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+				        </th>
+				        <th ng-click="TableDataCtrl.sortColumn('projectName', 3)">
+				        	Название проекта
+				        	<span ng-hide="TableDataCtrl.sortReverseI[3]" class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+				        	<span ng-show="TableDataCtrl.sortReverseI[3]" class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+				        </th>						
+
 				    </tr>
 			    </thead>
 
 				<tbody>
-					<tr ng-repeat="order in orders">
+					<tr ng-repeat="order in orders | orderBy:TableDataCtrl.sortType:TableDataCtrl.sortReverse">
 						<td>
 							{{order.theme}}	
 						</td>
